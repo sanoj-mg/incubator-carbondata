@@ -16,16 +16,18 @@
  */
 package org.apache.carbondata.core.datastore.filesystem;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.carbondata.common.logging.LogService;
 import org.apache.carbondata.common.logging.LogServiceFactory;
 import org.apache.carbondata.core.datastore.impl.FileFactory;
+
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CFSCarbonFile extends AbstractDFSCarbonFile {
   /**
@@ -108,7 +110,7 @@ public class CFSCarbonFile extends AbstractDFSCarbonFile {
     try {
       fs = fileStatus.getPath().getFileSystem(FileFactory.getConfiguration());
       Path destPath = new Path(changetoName);
-      if(fs.exists(destPath)) {
+      if (fs.exists(destPath)) {
         fs.delete(destPath, true);
       }
       return fs.rename(fileStatus.getPath(), destPath);
