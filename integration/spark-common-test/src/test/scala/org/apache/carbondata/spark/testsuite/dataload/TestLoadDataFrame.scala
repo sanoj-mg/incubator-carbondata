@@ -128,7 +128,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
       .option("dictionary_include","c3,c4")
       .mode(SaveMode.Overwrite)
       .save()
-    /*checkAnswer(
+    checkAnswer(
       sql("describe formatted carbon5"),
       Seq(Row("c1","string","DICTIONARY, KEY COLUMN"),
         Row("c2","string","DICTIONARY, KEY COLUMN"),
@@ -136,7 +136,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
         Row("c4","int","DICTIONARY, KEY COLUMN"),
         Row("c5","int","MEASURE")
       )
-    )*/
+    )
   }
 
   test("test load dataframe with string column excluded from the dictionary"){
@@ -147,7 +147,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
       .option("dictionary_exclude","c2")
       .mode(SaveMode.Overwrite)
       .save()
-    /*checkAnswer(
+    checkAnswer(
       sql("describe formatted carbon6"),
       Seq(Row("c1","string","DICTIONARY, KEY COLUMN"),
         Row("c2","string","KEY COLUMN"),
@@ -155,7 +155,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
         Row("c4","int","MEASURE"),
         Row("c5","int","MEASURE")
       )
-    )*/
+    )
   }
 
   test("test load dataframe with both dictionary include and exclude specified"){
@@ -167,7 +167,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
       .option("dictionary_exclude","c2")
       .mode(SaveMode.Overwrite)
       .save()
-    /*checkAnswer(
+    checkAnswer(
       sql("describe formatted carbon7"),
       Seq(Row("c1","string","DICTIONARY, KEY COLUMN"),
         Row("c2","string","KEY COLUMN"),
@@ -175,7 +175,7 @@ class TestLoadDataFrame extends QueryTest with BeforeAndAfterAll {
         Row("c4","int","DICTIONARY, KEY COLUMN"),
         Row("c5","int","MEASURE")
       )
-    )*/
+    )
   }
 
   override def afterAll {
