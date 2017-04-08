@@ -185,7 +185,7 @@ class CarbonDataFrameWriter(val dataFrame: DataFrame) {
           CREATE TABLE IF NOT EXISTS ${options.dbName}.${options.tableName}
           (${ carbonSchema.mkString(", ") })
           STORED BY '${ CarbonContext.datasourceName }'
-          ${ if (properties.nonEmpty) "TBLPROPERTIES (" + properties + ")" else ")"}
+          ${ if (properties.nonEmpty) " TBLPROPERTIES (" + properties + ")" else ""}
       """
   }
 
